@@ -1,0 +1,63 @@
+name: Work item
+description: Unità di lavoro del programma — una exit criterion verificabile.
+title: "[work] "
+labels: ["work"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Prima di aprire: **ricognizione** (il lavoro esiste già?) e **epica M** di destinazione.
+        Protocollo completo: `docs/processi/creazione-issue.md`.
+        Una issue senza tutti i campi è una bozza: non la creare.
+  - type: input
+    id: epic
+    attributes:
+      label: Epica M
+      description: L'epica di categoria M di cui questa issue è figlia (non esistono issue orfane).
+      placeholder: "#17 — M0 — Foundation & Setup"
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: Cosa esiste alla fine (il deliverable, in una riga).
+    validations:
+      required: true
+  - type: textarea
+    id: scope_in
+    attributes:
+      label: Scope — in
+      description: Cosa è dentro questa issue. Una voce per riga.
+    validations:
+      required: true
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of scope
+      description: Cosa è esplicitamente fuori. Una voce per riga, o "nessuna".
+    validations:
+      required: true
+  - type: textarea
+    id: repos
+    attributes:
+      label: Repositories involved
+      description: Tutti i repo toccati. Alla presa in carico si apre un branch della issue per ognuno.
+      value: |
+        - `Origami-WEC/<repo>`
+    validations:
+      required: true
+  - type: textarea
+    id: exit
+    attributes:
+      label: Exit criteria
+      description: UNA, verificabile. Come si sa che è finita.
+    validations:
+      required: true
+  - type: textarea
+    id: deps
+    attributes:
+      label: Dependencies
+      description: Issue / PR / decisione da cui dipende, o "nessuna".
+    validations:
+      required: true
