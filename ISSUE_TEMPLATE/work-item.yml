@@ -1,0 +1,153 @@
+name: Work item
+description: Un'unità di lavoro (una issue = un deliverable). Compila TUTTI i campi.
+title: "[track/…] "
+labels: ["work"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Un task = una issue.** Questa issue descrive un **deliverable** (cosa esiste alla fine),
+        non un'attività vaga. Protocollo completo: `Origami-WEC/organization` → `docs/processi/creazione-issue.md`.
+        Una issue senza **tutti** i campi obbligatori è una bozza: non è pronta.
+  - type: input
+    id: deliverable
+    attributes:
+      label: Deliverable (una riga)
+      description: Cosa esiste alla fine, in una riga. Deve combaciare con il titolo.
+      placeholder: "es. Rack layout della land station approvato e quotato"
+    validations:
+      required: true
+  - type: textarea
+    id: obiettivo
+    attributes:
+      label: Obiettivo
+      description: Perché questo lavoro serve e cosa sblocca.
+    validations:
+      required: true
+  - type: textarea
+    id: scope-in
+    attributes:
+      label: Scope IN
+      description: Cosa è dentro questa issue (punti elenco).
+      value: |
+        - ...
+    validations:
+      required: true
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: Out of scope
+      description: Cosa NON è dentro (evita lo scope creep).
+      value: |
+        - ...
+    validations:
+      required: true
+  - type: textarea
+    id: exit-criteria
+    attributes:
+      label: Exit criteria (come si sa che è finito)
+      description: Condizioni verificabili. Se non sono verificabili, non sono exit criteria.
+      value: |
+        - [ ] ...
+    validations:
+      required: true
+  - type: textarea
+    id: dipendenze
+    attributes:
+      label: Dipendenze
+      description: Issue/PR/decisioni da cui questo lavoro dipende (link). Scrivi "nessuna" se non ce ne sono.
+    validations:
+      required: true
+  - type: textarea
+    id: repo
+    attributes:
+      label: Repo coinvolti (campo board Repos)
+      description: Elenca i repo che la issue tocca — uno per riga. Ogni repo riceve il branch `issue-<NN>-<slug>`.
+      placeholder: |
+        Origami-WEC/organization
+        Origami-WEC/Polpo
+    validations:
+      required: true
+  - type: dropdown
+    id: track
+    attributes:
+      label: Track (label)
+      description: Una sola label di track.
+      options:
+        - track/device
+        - track/pto
+        - track/kyma
+        - track/land-station
+        - track/growth
+        - track/infrastructure
+    validations:
+      required: true
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: Tipo (label)
+      description: Natura del lavoro.
+      options:
+        - work
+        - milestone
+        - design
+        - software
+        - procurement
+        - bom
+    validations:
+      required: true
+  - type: dropdown
+    id: assegnatario
+    attributes:
+      label: Assegnatario (account macchina del ruolo)
+      description: Mai una persona.
+      options:
+        - Org-Mio (CEO)
+        - Org-Marco (Chief Engineer)
+        - Org-Alessandro (Chief Software Officer)
+        - Org-Chiara (Head of Growth)
+    validations:
+      required: true
+  - type: input
+    id: milestone
+    attributes:
+      label: Milestone (epica M)
+      description: Lo stesso milestone dell'epica M di cui questa issue è sub-issue.
+      placeholder: "es. M1 — Control, Sensor & Compute station"
+    validations:
+      required: true
+  - type: input
+    id: start
+    attributes:
+      label: Start (board, YYYY-MM-DD)
+      description: Data di inizio prevista. Nessuno parte prima di questa data (gate di avvio).
+      placeholder: "2026-10-11"
+    validations:
+      required: true
+  - type: input
+    id: due
+    attributes:
+      label: Due (board, YYYY-MM-DD)
+      description: Scadenza prevista. Oltre la Due scatta l'escalation OVERDUE (Priority P0 + label `overdue`).
+      placeholder: "2026-10-31"
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority (board)
+      options:
+        - P0
+        - P1
+        - P2
+        - P3
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        ### Dopo la creazione (obbligatorio)
+        Aggiungi la issue al board **Origami — Work Plan** (`item-add`), compila i campi
+        Track/Phase/Area/Priority/Start/Due/Repos, imposta **Status = Todo**, e collega la issue
+        come **sub-issue** dell'epica M. Alla presa in carico: apri il branch `issue-<NN>-<slug>`
+        in ogni repo coinvolto e apri **subito** la PR (bozza). Vedi `docs/processi/lavoro.md` §1.

@@ -1,0 +1,60 @@
+name: Milestone (gate)
+description: "Un gate del programma. Le milestone NON sono work-item da eseguire: sono aggregatori con un criterio di uscita."
+title: "[M…] "
+labels: ["milestone"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Le milestone sono aggregatori, non work-item.** Nel bus vengono escluse dalla coda di lavoro
+        (label `milestone`); sono la casa dei sub-issue, non lavoro da eseguire.
+        Fonte: `Origami-WEC/organization` → `docs/processi/coordinamento-github.md` §1.
+  - type: input
+    id: gate
+    attributes:
+      label: Gate (una riga)
+      description: Il gate in una riga, con la data-milestone.
+      placeholder: "es. M1 — Control, Sensor & Compute station — 2026-12-15"
+    validations:
+      required: true
+  - type: textarea
+    id: criterio
+    attributes:
+      label: Criterio di uscita
+      description: Cosa deve essere vero e verificabile perché il gate sia passato.
+      value: |
+        - [ ] ...
+    validations:
+      required: true
+  - type: textarea
+    id: sub-issue
+    attributes:
+      label: Sub-issue attese
+      description: Le work-item che compongono il gate (una per riga). Ogni sub-issue va collegata qui.
+      value: |
+        - ...
+    validations:
+      required: true
+  - type: input
+    id: target
+    attributes:
+      label: Target (board, YYYY-MM-DD)
+      description: Data-milestone. È l'unico campo `Target` del board.
+      placeholder: "2026-12-15"
+    validations:
+      required: true
+  - type: textarea
+    id: approvazione
+    attributes:
+      label: Approvazione richiesta
+      description: Il gate richiede un ok umano (C1 uscita esterna / C2 irreversibile)? Se sì, chi e cosa.
+      value: "No — gate interno (C3)."
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        ### Chiusura
+        Una milestone si chiude **solo quando TUTTI i sub-issue sono chiusi**. Prima di chiudere:
+        ricontrolla cosa è stato fatto; se trovi qualcosa di sbagliato o migliorabile, apri una
+        **nuova sub-issue** collegata e falla lavorare. Vedi `docs/processi/lavoro.md` §1.3.
