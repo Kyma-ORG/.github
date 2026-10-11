@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Il protocollo delle issue (leggere prima)
+    url: https://github.com/Origami-WEC/organization/blob/main/docs/processi/creazione-issue.md
+    about: Ricognizione, epica M, campi obbligatori. Una issue senza tutti i campi è una bozza.
+  - name: Il flusso di lavoro e i branch
+    url: https://github.com/Origami-WEC/organization/blob/main/docs/processi/lavoro.md
+    about: main + il branch della issue (issue-<NN>-<slug>); la PR nasce subito; chiudere la PR chiude la issue.
